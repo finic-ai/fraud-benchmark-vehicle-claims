@@ -1,0 +1,123 @@
+{
+  "questions": {
+    "young_policyholder": "Is the policyholder 25 or younger?",
+    "address_changed": "Did the address change shortly before the claim?",
+    "covers_own_vehicle": "Does the policy cover damage to the policyholder's own vehicle, not just liability?",
+    "first_claim": "Is this the policyholder's first claim?",
+    "old_for_price": "Is the vehicle old relative to its price band?",
+    "rural_accident": "Did the accident happen in a rural area?",
+    "at_fault": "Was the policyholder at fault?",
+    "is_fraud": "Is this record fraudulent?"
+  },
+  "derivation": [
+    {
+      "name": "young_policyholder",
+      "question": "Is the policyholder 25 or younger?",
+      "fields": "age_of_policyholder",
+      "support": 0.0393,
+      "fraud_rate": 0.6667,
+      "lift": 1.2864,
+      "kept": true
+    },
+    {
+      "name": "address_changed",
+      "question": "Did the address change shortly before the claim?",
+      "fields": "address_change_claim",
+      "support": 0.0758,
+      "fraud_rate": 0.6173,
+      "lift": 1.1911,
+      "kept": true
+    },
+    {
+      "name": "covers_own_vehicle",
+      "question": "Does the policy cover damage to the policyholder's own vehicle, not just liability?",
+      "fields": "base_policy",
+      "support": 0.8064,
+      "fraud_rate": 0.616,
+      "lift": 1.1887,
+      "kept": true
+    },
+    {
+      "name": "first_claim",
+      "question": "Is this the policyholder's first claim?",
+      "fields": "past_number_of_claims",
+      "support": 0.3265,
+      "fraud_rate": 0.6103,
+      "lift": 1.1777,
+      "kept": true
+    },
+    {
+      "name": "old_for_price",
+      "question": "Is the vehicle old relative to its price band?",
+      "fields": "age_of_vehicle, vehicle_price",
+      "support": 0.1282,
+      "fraud_rate": 0.5985,
+      "lift": 1.1549,
+      "kept": true
+    },
+    {
+      "name": "rural_accident",
+      "question": "Did the accident happen in a rural area?",
+      "fields": "accident_area",
+      "support": 0.1188,
+      "fraud_rate": 0.5984,
+      "lift": 1.1547,
+      "kept": true
+    },
+    {
+      "name": "at_fault",
+      "question": "Was the policyholder at fault?",
+      "fields": "fault",
+      "support": 0.8503,
+      "fraud_rate": 0.5831,
+      "lift": 1.1251,
+      "kept": true
+    },
+    {
+      "name": "claim_soon_after_policy",
+      "question": "Was the claim filed soon after the policy started?",
+      "fields": "days_policy_claim",
+      "support": 0.0065,
+      "fraud_rate": 0.5714,
+      "lift": 1.1026,
+      "kept": false
+    },
+    {
+      "name": "no_witness",
+      "question": "Was there no witness?",
+      "fields": "witness_present",
+      "support": 0.9981,
+      "fraud_rate": 0.5173,
+      "lift": 0.9983,
+      "kept": false
+    },
+    {
+      "name": "no_police_report",
+      "question": "Was no police report filed?",
+      "fields": "police_report_filed",
+      "support": 0.9785,
+      "fraud_rate": 0.5172,
+      "lift": 0.998,
+      "kept": false
+    },
+    {
+      "name": "prior_claims",
+      "question": "Does the policyholder have prior claims?",
+      "fields": "past_number_of_claims",
+      "support": 0.6735,
+      "fraud_rate": 0.4736,
+      "lift": 0.9139,
+      "kept": false
+    },
+    {
+      "name": "sport_car",
+      "question": "Is the vehicle a sports car?",
+      "fields": "vehicle_category",
+      "support": 0.2301,
+      "fraud_rate": 0.2195,
+      "lift": 0.4236,
+      "kept": false
+    }
+  ],
+  "rule": "kept if training lift >= 1.1 and support >= 2.0%"
+}
